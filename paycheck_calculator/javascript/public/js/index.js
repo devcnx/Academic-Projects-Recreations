@@ -212,6 +212,16 @@ document.addEventListener("DOMContentLoaded", () => {
         netPay.value = net.toLocaleString(undefined, { minimumFractionDigits: 2 });
     }
 
+    /**
+     * Handles the click event for the calculate button. 
+     * 
+     * This function is called when the calculate button is clicked. It validates the input values and calculates the
+     * pay based on the hourly rate and hours worked. If the input values are not valid, it will display an error
+     * message to the user. If the input values are valid, it will calculate the gross pay, tax amount, and net pay
+     * and display the results to the user in the corresponding input elements. 
+     * 
+     * @returns {void}
+     */
     $("#calculate").addEventListener("click", () => {
         if (!validateInputs()) return;
 
