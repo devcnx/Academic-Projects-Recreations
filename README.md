@@ -13,11 +13,11 @@ improve and expand upon the original assignments.
 
 ### Paycheck Calculator
 **Languages / Technologies**
-- Python
-    - Console and GUI
 - JavaScript
     - With HTML/CSS and Bootstrap
 - PHP
+- Python
+    - Console and GUI
 - Vue.js
 
 ## Project Structure
