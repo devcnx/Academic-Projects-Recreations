@@ -65,8 +65,11 @@
 </template>
 
 <script setup>
+
+    // Import the ref function from the Vue Composition API.
     import { ref } from 'vue';
 
+    // Declare the reactive variables.
     const hourlyRate = ref('');
     const hoursWorked = ref('');
     const taxPercentage = ref(18.00);
@@ -81,15 +84,70 @@
     const maxStandardHours = 40;
     const overtimeRate = 1.5;
 
+    /**
+     * Check if the input value is valid. 
+     * 
+     * This function checks that the input value is not an empty string and is a number. If the input value is not
+     * valid, the function returns false. Otherwise, it returns true. 
+     * 
+     * @param {String} value - The input value to check. 
+     * @returns {Boolean} - True if the input value is valid, false otherwise. 
+     */
     const isValidInput = (value) => value !== '' && !isNaN(value);
+
+    /**
+     * Check if the input value is greater than zero. 
+     * 
+     * This function checks that the input value is valid and greater than zero. If the input value is not valid or
+     * less than or equal to zero, the function returns false. Otherwise, it returns true. 
+     * 
+     * @param {String} value - The input value to check.
+     * @returns {Boolean} - True if the input value is valid and greater than zero, false otherwise.
+     */
     const isValidInputGreaterThanZero = (value) => isValidInput(value) && parseFloat(value) > 0;
 
+    /**
+     * Clear the value of an input element. 
+     * 
+     * This function sets the value of the input element to an empty string. 
+     * 
+     * @param {HTMLInputElement} element - The input element to clear. 
+     */
     const clearElementValue = (element) => element.value = '';
+
+    /**
+     * Clear the value of all auto-populated inputs. 
+     * 
+     * This function clears the value of the gross pay, taxes, and net pay inputs. 
+     */
     const clearAllAutoPopulatedInputs = () => {
         const autoPopulatedInputs = [grossPay, taxes, netPay];
         autoPopulatedInputs.forEach((input) => clearElementValue(input));
     }
 
+    /**
+     * Calculate the paycheck. 
+     * 
+     * This function calculates the gross pay, taxes, and net pay based on the hourly rate, number of hours worked, and
+     * tax percentage. If the hourly rate or number of hours worked is not valid, the function displays an error message
+     * and clears the auto-populated inputs. If the inputs are valid, the function calculates the paycheck values and
+     * displays them in the corresponding input elements of the form.
+     * 
+     * The gross pay is calculated as a product of the hourly rate and the number of hours worked. If the number of
+     * hours worked exceeds the maximum standard hours, the function calculates the gross pay as the sum of the product
+     * of the maximum standard hours and the hourly rate and the product of the overtime hours and the hourly rate
+     * multiplied by the overtime rate. 
+     * 
+     * The taxes are calculated as a product of the gross pay and the tax rate. 
+     * 
+     * The net pay is calculated as the difference between the gross pay and the taxes. 
+     * 
+     * The paycheck values are displayed in the corresponding input elements of the form with two decimal places. 
+     * 
+     * The function does not return a value. 
+     * 
+     * @returns {Void}
+     */
     const calculatePaycheck = () => {
         let isValid = true;
 
