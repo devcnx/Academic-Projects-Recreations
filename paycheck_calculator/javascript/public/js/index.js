@@ -4,7 +4,7 @@
  * Selects an element from the DOM using the provided selector. 
  * 
  * @param {string} selector - The CSS selector to use to select the element. 
- * @returns {Element} The element that was selected.
+ * @returns {Element} - The element that was selected.
  *
  */
 const $ = (selector) => document.querySelector(selector);
