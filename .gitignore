@@ -1,0 +1,42 @@
+# Ignore Visual Studio Code settings
+.vscode
+
+# Ignore Python Virtual Environment
+venv/
+**__pycache__/
+
+# Ignore node_modules for Vue.js Projects
+node_modules/
+
+# Ignore the Build Output for the Vue.js Projects
+dist/
+build/
+
+# Ignore Specific Python Bytecode and Compiled Files
+*.pyc
+*.pyo
+
+# Ignore Specific OS Files
+.DS_Store
+Thumbs.db
+
+# Ignore Logs and Temporary Files
+*.log
+*.tmp
+
+# Ignore IDF Settings
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore Python-specific virtual environment folders
+paycheck_calculator/python/gui/venv/
+paycheck_calculator/python/console/venv/
+
+# Ignore npm lock file (optional, depends on project preferences)
+# Uncomment the following line if you prefer not to track package-lock.json
+paycheck_calculator/vue-paycheck/package-lock.json
+
+# Ignore ESLint and Prettier configuration (if not required to be tracked)
+paycheck_calculator/vue-paycheck/.eslintrc.cjs
+paycheck_calculator/vue-paycheck/.prettierrc.json
