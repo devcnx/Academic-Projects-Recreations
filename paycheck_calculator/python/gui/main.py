@@ -42,15 +42,23 @@ def display_pay_details(gross_pay, tax_amount, net_pay):
 
 
 def calculate():
-    hours_worked = hours_var.get()
-    hourly_rate = rate_var.get()
+    hours_worked = hours_var.get().strip()
+    hourly_rate = rate_var.get().strip()
+
+    if not hours_worked:
+        messagebox.showerror("Invalid Input", "Please enter the number of hours worked.")
+        return
+
+    if not hourly_rate:
+        messagebox.showerror("Invalid Input", "Please enter the hourly rate.")
+        return
 
     if not is_valid_float_greater_than_zero(hours_worked):
-        messagebox.showerror("Invalid Input", "Please enter a valid number of hours worked.")
+        messagebox.showerror("Invalid Input", "Please enter a valid number of hours worked greater than zero.")
         return
 
     if not is_valid_float_greater_than_zero(hourly_rate):
-        messagebox.showerror("Invalid Input", "Please enter a valid hourly rate.")
+        messagebox.showerror("Invalid Input", "Please enter a valid hourly rate greater than zero.")
         return
 
     hours_worked = float(hours_worked)
@@ -63,26 +71,31 @@ def calculate():
     display_pay_details(gross_pay, tax_amount, net_pay)
 
 
-# GUI setup
-root = tk.Tk()
-root.title("Paycheck Calculator")
+def setup_gui(root):
+    root.title("Paycheck Calculator")
 
-# Hourly Rate Input
-tk.Label(root, text="Hourly Rate:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
-rate_var = tk.StringVar()
-tk.Entry(root, textvariable=rate_var).grid(row=0, column=1, padx=10, pady=5)
+    # Hourly Rate Input
+    tk.Label(root, text="Hourly Rate:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
+    global rate_var
+    rate_var = tk.StringVar()
+    tk.Entry(root, textvariable=rate_var).grid(row=0, column=1, padx=10, pady=5)
 
-# Hours Worked Input
-tk.Label(root, text="Hours Worked:").grid(row=1, column=0, padx=10, pady=5, sticky="e")
-hours_var = tk.StringVar()
-tk.Entry(root, textvariable=hours_var).grid(row=1, column=1, padx=10, pady=5)
+    # Hours Worked Input
+    tk.Label(root, text="Hours Worked:").grid(row=1, column=0, padx=10, pady=5, sticky="e")
+    global hours_var
+    hours_var = tk.StringVar()
+    tk.Entry(root, textvariable=hours_var).grid(row=1, column=1, padx=10, pady=5)
 
-# Calculate Button
-tk.Button(root, text="Calculate", command=calculate).grid(row=2, column=0, columnspan=2, pady=10)
+    # Calculate Button
+    tk.Button(root, text="Calculate", command=calculate).grid(row=2, column=0, columnspan=2, pady=10)
 
-# Result Display
-result_var = tk.StringVar()
-tk.Label(root, textvariable=result_var, justify="left").grid(row=3, column=0, columnspan=2, padx=10, pady=10)
+    # Result Display
+    global result_var
+    result_var = tk.StringVar()
+    tk.Label(root, textvariable=result_var, justify="left").grid(row=3, column=0, columnspan=2, padx=10, pady=10)
 
-# Start the GUI event loop
-root.mainloop()
+
+if __name__ == '__main__':
+    root = tk.Tk()
+    setup_gui(root) 
+    root.mainloop()
